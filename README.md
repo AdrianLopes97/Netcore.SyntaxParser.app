@@ -1,4 +1,5 @@
-﻿# Netcore.SyntaxParser
+﻿```markdown
+# Netcore.SyntaxParser
 
 ## Descrição
 O **Netcore.SyntaxParser** é uma biblioteca desenvolvida em C# para realizar análise léxica e sintática de linhas de atribuição em uma pseudolinguagem. Ele valida se uma linha segue uma gramática específica, permitindo identificar e processar tokens como identificadores, números, operadores e atribuições.
@@ -6,6 +7,7 @@ O **Netcore.SyntaxParser** é uma biblioteca desenvolvida em C# para realizar an
 ### Gramática Suportada
 A biblioteca valida linhas de atribuição que seguem a seguinte gramática:
 
+```ebnf
 <linha> ::= <ID> "=" <expressao>
 <expressao> ::= <termo> | <expressao> <op> <termo>
 <termo> ::= <ID> | <NUM>
@@ -14,23 +16,28 @@ A biblioteca valida linhas de atribuição que seguem a seguinte gramática:
 <NUM> ::= digito { digito }*
 letra ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z" | "_"
 digito ::= "0" | "1" | ... | "9"
-
+```
 
 ### Exemplos de Linhas Válidas
-- `salario = salario * 3`
-- `salario = salario * bonus`
-- `salario = 1000 * 50`
-- `salario = salario - descontos + beneficios`
+```plaintext
+salario = salario * 3
+salario = salario * bonus
+salario = 1000 * 50
+salario = salario - descontos + beneficios
+```
 
 ### Exemplos de Linhas Inválidas
-- `salario = salario *`
-- `salario = *`
-- `salario =`
-- `salario`
+```plaintext
+salario = salario *
+salario = *
+salario =
+salario
+```
 
 ---
 
 ## Funcionalidades
+
 1. **Analisador Léxico**:
    - Converte uma string de entrada em uma lista de tokens.
    - Identifica os seguintes tipos de tokens:
@@ -51,20 +58,26 @@ digito ::= "0" | "1" | ... | "9"
 - .NET 8 instalado no sistema.
 
 ### Instalação
-1. Clone o repositório:
-   git clone https://github.com/seu-usuario/netcore-syntax-parser.git
-2. Navegue até o diretório do projeto:
-   cd netcore-syntax-parser
+```bash
+# Clone o repositório:
+git clone https://github.com/seu-usuario/netcore-syntax-parser.git
 
-   
+# Navegue até o diretório do projeto:
+cd netcore-syntax-parser
+```
+
 ### Exemplo de Uso
 No arquivo `Program.cs`, você pode testar a biblioteca com o seguinte código:
 
+```csharp
 using Netcore.SyntaxParser.app.Utils;
-class Program { 
-    static void Main(string[] args) 
-    {   var lines = new[] 
-        { 
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var lines = new[]
+        {
             "salario = salario * 3",
             "salario = salario * bonus",
             "salario = 1000 * 50",
@@ -74,6 +87,7 @@ class Program {
             "salario =",
             "salario"
         };
+
         // Testando as linhas de exemplo
         foreach (var line in lines)
         {
@@ -86,23 +100,27 @@ class Program {
         }
     }
 }
-
+```
 
 ### Saída Esperada
 Para as linhas fornecidas:
+
 - **Válidas**:
-  salario = salario * 3 
+  ```plaintext
+  salario = salario * 3
   salario = salario * bonus
   salario = 1000 * 50
   salario = salario - descontos + beneficios
-  
+  ```
   Retornam `Is valid: True`.
 
 - **Inválidas**:
+  ```plaintext
   salario = salario *
-  salario = * 
-  salario = 
+  salario = *
+  salario =
   salario
+  ```
   Retornam `Is valid: False`.
 
 ---
@@ -124,7 +142,5 @@ Para as linhas fornecidas:
 - **`HandleIdentifier`**: Processa identificadores na entrada.
 - **`ValidateExpression`**: Valida expressões conforme a gramática.
 - **`ValidateTerm`**: Valida termos (identificadores ou números).
-
----
-
-  
+```
+ 
