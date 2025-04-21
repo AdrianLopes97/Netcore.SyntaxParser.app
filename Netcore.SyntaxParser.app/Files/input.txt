@@ -1,0 +1,8 @@
+﻿salario = salario * 3
+salario = salario * bonus
+salario = 1000 * 50
+salario = salario - descontos + beneficios
+salario = salario *
+salario = *
+salario =
+salario
